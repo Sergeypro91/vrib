@@ -8,11 +8,7 @@ class TableBlock extends React.Component {
   }
 
   render() {
-    return (
-      <div className="new">
-        <div className="table-block">{this.data}</div>
-      </div>
-    )
+    return <div className="table-block">{this.props.someData}</div>
   }
 }
 

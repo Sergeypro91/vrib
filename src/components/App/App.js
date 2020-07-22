@@ -1,7 +1,7 @@
 import React from 'react'
+import JSMpeg from '@cycjimmy/jsmpeg-player'
 import VideoBlock from '../Video-block/Video-block'
 import TableBlock from '../Table-block/Table-block'
-import JSMpeg from '@cycjimmy/jsmpeg-player'
 import bell from './bell.mp3'
 
 class App extends React.Component {
@@ -9,12 +9,20 @@ class App extends React.Component {
     super(props)
     this.state = {
       messages: [],
-      call: true,
     }
   }
 
-  connect() {
-    const square = document.getElementById('square')
+  componentDidMount() {
+    this.connect()
+    this.video()
+  }
+
+  addMessage = (message) => {
+    this.setState((state) => ({ messages: [message, ...state.messages] }))
+  }
+
+  connect = () => {
+    const square = document.getElementById('square1')
     const audio = new Audio(bell)
 
     function play() {
@@ -25,51 +33,80 @@ class App extends React.Component {
         square.style.backgroundColor = 'red'
       }
     }
-    const ws = new WebSocket('ws://127.0.0.1:8888')
-    ws.onopen = () => {
-      console.log('WebSocket Client Connected')
+
+    function reconnect() {
+      console.log('Try to reconnect')
+      setWebSocket()
     }
-    ws.onmessage = (evt) => {
-      const message = JSON.parse(evt.data)
-      this.addMessage(message)
-      const inter = setInterval(() => {
-        play()
-      }, 500)
-      setTimeout(() => {
-        clearInterval(inter)
-      }, 5000)
+
+    const setWebSocket = () => {
+      const ws = new WebSocket('ws://127.0.0.1:8888')
+
+      ws.onopen = () => {
+        console.log('WebSocket Client Connected')
+      }
+      ws.onmessage = (evt) => {
+        const message = JSON.parse(evt.data)
+        this.addMessage(message)
+        const inter = setInterval(() => {
+          play()
+        }, 500)
+        setTimeout(() => {
+          clearInterval(inter)
+        }, 5000)
+      }
+      ws.onclose = () => {
+        console.log('WebSocket Client Disconnect')
+        console.log(ws.readyState)
+
+        if (ws.readyState !== 1) {
+          setTimeout(function () {
+            console.log('Need to reconnect')
+            reconnect()
+          }, 5000)
+        }
+      }
+      ws.onerror = (err) => {
+        console.error(
+          'Socket encountered error: ',
+          err.message,
+          'Closing socket',
+        )
+        ws.close()
+      }
     }
-    ws.onclose = () => {
-      console.log('WebSocket Client Disconnect')
-      // setTimeout(function () {
-      //   this.connect()
-      // }, 5000)
-    }
-    ws.onerror = (err) => {
-      console.error('Socket encountered error: ', err.message, 'Closing socket')
-      ws.close()
-    }
+
+    setWebSocket()
   }
 
-  video() {
-    new JSMpeg.Player('ws://localhost:9999', {
+  video = () => {
+    const video = new JSMpeg.Player('ws://localhost:9999', {
       canvas: document.getElementById('canvas'),
     })
+
+    console.log(video)
   }
 
-  addMessage = (message) => {
-    this.setState((state) => ({ messages: [message, ...state.messages] }))
+  whoIs = () => {
+    console.log('Who is there?')
   }
 
-  componentDidMount() {
-    this.connect()
-    this.video()
+  openDoor = () => {
+    console.log('The door is open, come in.')
+  }
+
+  entryDenied = () => {
+    console.log('You are denied entry!')
   }
 
   render() {
     return (
       <div className="app container">
-        <VideoBlock />
+        <VideoBlock
+          whoIs={this.whoIs}
+          openDoor={this.openDoor}
+          entryDenied={this.entryDenied}
+        />
         <TableBlock someData={this.state.messages} />
       </div>
     )

@@ -24,6 +24,7 @@ module.exports = {
     'react/forbid-prop-types': [0, { forbid: ['any'] }],
     'react/prop-types': 0,
     'react/prefer-stateless-function': 'off',
+    'react/destructuring-assignment': 'oof',
     'import/prefer-default-export': 'off',
   },
   env: {

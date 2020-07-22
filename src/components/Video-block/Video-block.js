@@ -6,7 +6,9 @@ class VideoBlock extends React.Component {
     return (
       <div className="video-block">
         <canvas id="canvas" />
-        <div id="square" />
+        <button id="square1" onClick={this.props.whoIs} />
+        <button id="square2" onClick={this.props.openDoor} />
+        <button id="square3" onClick={this.props.entryDenied} />
       </div>
     )
   }
