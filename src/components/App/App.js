@@ -1,4 +1,5 @@
 import React from 'react'
+import './app.scss'
 import JSMpeg from '@cycjimmy/jsmpeg-player'
 import VideoBlock from '../Video-block/Video-block'
 import TableBlock from '../Table-block/Table-block'
@@ -22,7 +23,7 @@ class App extends React.Component {
   }
 
   connect = () => {
-    const square = document.getElementById('square1')
+    const square = document.getElementById('whoIs')
     const audio = new Audio(bell)
 
     function play() {
@@ -102,12 +103,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="app container">
-        <VideoBlock
-          whoIs={this.whoIs}
-          openDoor={this.openDoor}
-          entryDenied={this.entryDenied}
-        />
-        <TableBlock someData={this.state.messages} />
+        <div className="app__wrapper row">
+          <VideoBlock
+            whoIs={this.whoIs}
+            openDoor={this.openDoor}
+            entryDenied={this.entryDenied}
+          />
+          <TableBlock someData={this.state.messages} />
+        </div>
       </div>
     )
   }
