@@ -4,21 +4,35 @@ import VideoBlock from '../Video-block/Video-block'
 import TableBlock from '../Table-block/Table-block'
 import bell from './bell.mp3'
 
+import Axios from 'axios'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      messages: [],
+      tableEvents: [],
     }
   }
 
   componentDidMount() {
+    Axios.get('http://localhost:8000/events')
+      .then((res) => {
+        this.setState({ tableEvents: res.data })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
     this.connect()
     this.video()
+    this.tableParse()
   }
 
-  addMessage = (message) => {
-    this.setState((state) => ({ messages: [message, ...state.messages] }))
+  addTableEvent = (timeEvent) => {
+    this.setState((state) => ({
+      tableEvents: [timeEvent, ...state.tableEvents],
+    }))
   }
 
   connect = () => {
@@ -28,7 +42,7 @@ class App extends React.Component {
     function play() {
       audio.play()
       if (square.style.backgroundColor === 'red') {
-        square.style.backgroundColor = '#e3e3e3'
+        square.style.backgroundColor = '#fff'
       } else {
         square.style.backgroundColor = 'red'
       }
@@ -46,8 +60,8 @@ class App extends React.Component {
         console.log('WebSocket Client Connected')
       }
       ws.onmessage = (evt) => {
-        const message = JSON.parse(evt.data)
-        this.addMessage(message)
+        const timeEvent = JSON.parse(evt.data)
+        this.addTableEvent(timeEvent)
         const inter = setInterval(() => {
           play()
         }, 500)
@@ -99,6 +113,18 @@ class App extends React.Component {
     console.log('You are denied entry!')
   }
 
+  tableParse() {
+    const newTable = this.state.tableEvents.map(function (curr) {
+      return { dataTime: curr.datetime, eventCode: curr.cmd, photo: curr.image }
+    })
+
+    console.log(newTable)
+
+    return newTable
+
+    // this.setState({ table: newTable })
+  }
+
   render() {
     return (
       <div className="app container">
@@ -108,7 +134,7 @@ class App extends React.Component {
             openDoor={this.openDoor}
             entryDenied={this.entryDenied}
           />
-          <TableBlock someData={this.state.messages} />
+          <TableBlock tableData={this.tableParse()} />
         </div>
       </div>
     )

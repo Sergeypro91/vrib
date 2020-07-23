@@ -12,99 +12,18 @@ class TableBlock extends React.Component {
     super(props)
 
     this.state = {
-      cars: [
-        {
-          photo: 'Volkswagen',
-          eventCode: 2012,
-          cardId: 'White',
-          dataTime: 'dsad231ff',
-        },
-        {
-          photo: 'Audi',
-          eventCode: 2011,
-          cardId: 'Black',
-          dataTime: 'gwregre345',
-        },
-        {
-          photo: 'Renault',
-          eventCode: 2005,
-          cardId: 'Gray',
-          dataTime: 'h354htr',
-        },
-        { photo: 'BMW', eventCode: 2003, cardId: 'Blue', dataTime: 'j6w54qgh' },
-        {
-          photo: 'Mercedes',
-          eventCode: 1995,
-          cardId: 'White',
-          dataTime: 'hrtwy34',
-        },
-        {
-          photo: 'Volvo',
-          eventCode: 2005,
-          cardId: 'Black',
-          dataTime: 'jejtyj',
-        },
-        {
-          photo: 'Honda',
-          eventCode: 2012,
-          cardId: 'Yellow',
-          dataTime: 'g43gr',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        {
-          photo: 'Jaguar',
-          eventCode: 2013,
-          cardId: 'White',
-          dataTime: 'greg34',
-        },
-        { photo: 'Ford', eventCode: 2000, cardId: 'Black', dataTime: 'h54hw5' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-        { photo: 'Fiat', eventCode: 2013, cardId: 'Red', dataTime: '245t2s' },
-      ],
+      table: [],
     }
+
+    console.log('Data build')
+  }
+
+  componentDidMount() {
+    const newTable = this.props.tableData.map(function (curr) {
+      return { dataTime: curr.datetime, eventCode: curr.cmd, photo: curr.image }
+    })
+
+    this.setState({ table: newTable })
   }
 
   render() {
@@ -114,7 +33,7 @@ class TableBlock extends React.Component {
           <div className="table">
             <DataTable
               header="События"
-              value={this.state.cars}
+              value={this.state.table}
               scrollable={true}
               scrollHeight="600px"
               loading={this.state.loading}
