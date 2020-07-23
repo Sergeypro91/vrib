@@ -1,0 +1,24 @@
+.table-block {
+    flex: 2;
+    padding: 20px;
+
+    &__wrapper {   
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;     
+        background: $mainColor-white;
+        padding: 14px;
+    }
+}
+
+// Custamize PrimeReact table
+tr.p-datatable-row {
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1) !important;
+    
+    &:hover {
+        background: $mainColor-borderGrey_active !important;
+        color: $mainColor-white !important;
+        cursor: pointer;
+    }
+}

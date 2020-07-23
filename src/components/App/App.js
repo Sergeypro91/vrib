@@ -1,5 +1,4 @@
 import React from 'react'
-import './app.scss'
 import JSMpeg from '@cycjimmy/jsmpeg-player'
 import VideoBlock from '../Video-block/Video-block'
 import TableBlock from '../Table-block/Table-block'
@@ -103,7 +102,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app container">
-        <div className="app__wrapper row">
+        <div className="app__wrapper">
           <VideoBlock
             whoIs={this.whoIs}
             openDoor={this.openDoor}
