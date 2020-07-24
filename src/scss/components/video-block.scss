@@ -10,7 +10,7 @@
 .logo {
     width: 100%;
     max-width: 300px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .video-ui {
@@ -44,8 +44,9 @@
     justify-content: center;
 
     &__child {
-        width: 270px;
-        height: 480px;
+        max-width: 100%;
+        height: calc(100vh - 425px);
+        max-height: 500px;
         border-radius: 4px;
     }
 }
@@ -80,7 +81,7 @@
         }
 
         &-hint {
-            margin-top: 10px;
+            margin-top: 5px;
         }
     }
 
@@ -92,21 +93,12 @@
     }
 }
 
-@media only screen and (max-width: 1600px) {
-    .video-canvas {
-        display: flex;
-        justify-content: center;
-
-        &__child {
-            width: 250px;
-            height: 440px;
-            border-radius: 4px;
-        }
-    }
-}
-
 @media only screen and (max-width: 1000px) {
     .video-block {
         max-width: none;
+        padding: 20px;
+    }
+    .logo {
+        align-self: center;
     }
 }
