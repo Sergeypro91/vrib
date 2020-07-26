@@ -1,7 +1,5 @@
 @import './utils/vars';
 @import './utils/reset';
-@import 'common';
-
 
 body,body #root .p-component {
     font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
@@ -37,4 +35,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #55555580;
+}
+
+#root {
+    background-image: url(../static/img/jpg/bg_img.jpg);
+    background-size: cover;
+}
+
+@media only screen and (max-width: 1000px) {
+    #root {
+        background: none;
+    }
 }

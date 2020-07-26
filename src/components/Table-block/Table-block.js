@@ -6,10 +6,10 @@ import 'primeicons/primeicons.css'
 import 'primereact/resources/themes/nova-light/theme.css'
 import 'primereact/resources/primereact.css'
 import 'primeflex/primeflex.css'
+import './table-block.scss'
 
 class TableBlock extends React.PureComponent {
   constructor(props) {
-    console.log(props)
     super(props)
 
     this.state = {}
@@ -44,7 +44,7 @@ class TableBlock extends React.PureComponent {
               value={tableData}
               scrollable={true}
               scrollHeight="600px"
-              loading={this.state.loading}
+              loading={tableData.length === 0}
             >
               <Column field="datetime" header="Дата/Время" />
               <Column field="cmd" header="Код события" />

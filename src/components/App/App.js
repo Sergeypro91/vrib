@@ -3,7 +3,8 @@ import Axios from 'axios'
 import JSMpeg from '@cycjimmy/jsmpeg-player'
 import VideoBlock from '../Video-block/Video-block'
 import TableBlock from '../Table-block/Table-block'
-import bell from './bell.mp3'
+import bell from '../../static/media/bell.mp3'
+import './app.scss'
 
 let ws
 
@@ -29,8 +30,8 @@ class App extends React.Component {
       .then((res) => {
         this.setState({ tableEvents: res.data })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        console.log('The base is not available, please try again later.')
       })
   }
 
@@ -41,6 +42,7 @@ class App extends React.Component {
 
     ws.onopen = () => {
       console.log('WebSocket Client Connected')
+      this.takeDataFromServ()
     }
     ws.onmessage = (evt) => {
       const timeEvent = JSON.parse(evt.data)
@@ -67,12 +69,12 @@ class App extends React.Component {
       ws.close()
     }
 
-    function play() {
+    const play = () => {
       audio.play()
-      if (square.style.backgroundColor === 'red') {
-        square.style.backgroundColor = '#fff'
+      if (square.className === 'video-buttons__child-buttons') {
+        square.classList.add('video-buttons__child-buttons--call')
       } else {
-        square.style.backgroundColor = 'red'
+        square.classList.remove('video-buttons__child-buttons--call')
       }
     }
 
@@ -123,7 +125,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app container">
+      <div className="app">
         <div className="app__wrapper">
           <VideoBlock
             whoIs={this.whoIs}

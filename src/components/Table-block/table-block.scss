@@ -1,0 +1,60 @@
+@import '../../scss/utils/vars.scss';
+
+.table-block {
+    flex: 2;
+    padding: 20px;
+
+    &__wrapper {   
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;     
+        background: $mainColor-white;
+        padding: 14px;
+        box-shadow: 0 6.4px 14px 0 #00000013, 0 1.2px 3.6px 0 #00000011;
+    }
+}
+
+// Custamize PrimeReact table
+.p-datatable-scrollable {
+    min-height: 730px;
+}
+
+.pi-spinner {
+    font-size: 4em !important;
+}
+
+.p-datatable-header {
+    font-size: 2em !important;
+    border: none !important;
+}
+
+.p-datatable-thead {
+    tr {
+        th {
+            height: 60px;
+            font-size: 16px;
+            padding: 20px 5px !important;
+            background: $mainColor-borderGrey_active !important;
+            color: $mainColor-white !important;
+        }
+    }
+}
+
+.p-datatable-row {
+    // transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+    
+    &:hover {
+        background: $mainColor-borderGrey_active-transparent20 !important;
+        cursor: pointer;
+    }
+
+    td {
+        text-align: center !important;
+        border: none !important;
+    }
+
+    img {
+        border-radius: 50%;
+    }
+}

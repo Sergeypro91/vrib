@@ -1,0 +1,129 @@
+@import '../../scss/utils/vars.scss';
+
+.video-block {
+    width: 100%;
+    max-width: 500px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px;
+}
+
+.logo {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 40px;
+}
+
+.video-ui {
+    width: 100%;
+    max-width: 340px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__wrapper {
+        width: 100%;
+        position: relative;
+        padding-top: calc(100% * 1.777);
+        border-radius: 30px;
+        box-shadow: 0 6.4px 14px 0 #00000013, 0 1.2px 3.6px 0 #00000011;
+    }
+}
+
+.video-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    border-radius: 30px;
+}
+
+.video-buttons {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-top: calc(100% / 3);
+
+    &__wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    &__child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 100%;
+        position: relative;
+
+        &-buttons {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $mainColor-white;
+            border-radius: 50%;
+            border: 1px solid $mainColor-borderGrey;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+    
+            svg {
+                transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+            }
+    
+            &:hover {
+                border-color: $mainColor-borderGrey_active;
+                box-shadow:  0 25.6px 57.6px 0 #00000022, 0 4.8px 14.4px 0 #00000018;
+                transform: scale(1.2);
+    
+                svg {
+                    fill: $mainColor-borderGrey_active;
+                }
+            }
+
+            &--call {
+                background: red;
+                box-shadow:  0 25.6px 57.6px 0 #00000022, 0 4.8px 14.4px 0 #00000018;
+                transform: scale(1.2);
+
+                svg {
+                    fill: $mainColor-white;
+                }
+            }
+        }
+
+        &-hint {
+            display: none;
+            transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+        }
+
+        &:hover &-hint {
+            display: block;
+            position: absolute;
+            top: -20px;
+            left: 15px;
+            padding: 10px;
+            background: $mainColor-white;
+            border-radius: 4px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .video-block {
+        max-width: none;
+        padding: 20px;
+    }
+    .logo {
+        align-self: center;
+    }
+}

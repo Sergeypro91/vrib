@@ -1,0 +1,26 @@
+@import '../../scss/utils/vars.scss';
+
+.app { 
+    display: flex;
+    background: $mainColor-whitetransparent95;
+    
+    &__wrapper {
+        width: 100%;
+        max-width: 1920px;
+        min-height: 100vh;
+        display: flex;
+        margin: auto;
+    }
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    .app {
+        background: $mainColor-white;
+
+        &__wrapper {
+            flex-direction: column;
+        }
+    }
+}

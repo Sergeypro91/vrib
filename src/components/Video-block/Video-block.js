@@ -1,4 +1,5 @@
 import React from 'react'
+import './video-block.scss'
 
 class VideoBlock extends React.Component {
   render() {
@@ -21,68 +22,65 @@ class VideoBlock extends React.Component {
         </div>
         <div className="video-ui">
           <div className="video-ui__wrapper">
-            <div className="video-title">
-              <h1>Видео камера</h1>
-            </div>
-            <div className="video-canvas">
-              <canvas id="canvas" className="video-canvas__child" />
-            </div>
+            <canvas id="canvas" className="video-canvas" />
             <div className="video-buttons">
               <div className="video-buttons__wrapper">
-                <button
-                  id="whoIs"
-                  className="video-buttons__child"
-                  onClick={this.props.openDoor}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                <div className="video-buttons__child">
+                  <button
+                    id="whoIs"
+                    className="video-buttons__child-buttons"
+                    onClick={this.props.openDoor}
                   >
-                    <path d="M10.385,21.788C10.563,21.927,10.779,22,11,22c0.081,0,0.162-0.01,0.242-0.03l8-2C19.688,19.859,20,19.459,20,19V5 c0-0.459-0.313-0.859-0.758-0.97l-8-2c-0.298-0.074-0.614-0.007-0.857,0.182S10,2.692,10,3v1H6C5.447,4,5,4.448,5,5v14 c0,0.552,0.447,1,1,1h4v1C10,21.308,10.142,21.599,10.385,21.788z M12,4.281l6,1.5v12.438l-6,1.5V19V5V4.281z M7,18V6h3v12H7z" />
-                    <path d="M14.242,13.159C14.688,13.047,15,12.647,15,12.188v-0.377c0-0.459-0.313-0.859-0.758-0.97 C13.611,10.684,13,11.161,13,11.812v0.377C13,12.839,13.611,13.316,14.242,13.159z" />
-                  </svg>
-                </button>
-                <div className="video-buttons__child-hint">Впустить</div>
-              </div>
-              <div className="video-buttons__wrapper">
-                <button
-                  id="openDoor"
-                  className="video-buttons__child"
-                  onClick={this.props.whoIs}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M10.385,21.788C10.563,21.927,10.779,22,11,22c0.081,0,0.162-0.01,0.242-0.03l8-2C19.688,19.859,20,19.459,20,19V5 c0-0.459-0.313-0.859-0.758-0.97l-8-2c-0.298-0.074-0.614-0.007-0.857,0.182S10,2.692,10,3v1H6C5.447,4,5,4.448,5,5v14 c0,0.552,0.447,1,1,1h4v1C10,21.308,10.142,21.599,10.385,21.788z M12,4.281l6,1.5v12.438l-6,1.5V19V5V4.281z M7,18V6h3v12H7z" />
+                      <path d="M14.242,13.159C14.688,13.047,15,12.647,15,12.188v-0.377c0-0.459-0.313-0.859-0.758-0.97 C13.611,10.684,13,11.161,13,11.812v0.377C13,12.839,13.611,13.316,14.242,13.159z" />
+                    </svg>
+                  </button>
+                  <div className="video-buttons__child-hint">Впустить</div>
+                </div>
+                <div className="video-buttons__child">
+                  <button
+                    id="openDoor"
+                    className="video-buttons__child-buttons"
+                    onClick={this.props.whoIs}
                   >
-                    <path d="M12 4C9.243 4 7 6.243 7 9h2c0-1.654 1.346-3 3-3s3 1.346 3 3c0 1.069-.454 1.465-1.481 2.255-.382.294-.813.626-1.226 1.038C10.981 13.604 10.995 14.897 11 15v2h2v-2.009c0-.024.023-.601.707-1.284.32-.32.682-.598 1.031-.867C15.798 12.024 17 11.1 17 9 17 6.243 14.757 4 12 4zM11 18H13V20H11z" />
-                  </svg>
-                </button>
-                <div className="video-buttons__child-hint">Кто там?</div>
-              </div>
-              <div className="video-buttons__wrapper">
-                <button
-                  id="entryDenied"
-                  className="video-buttons__child"
-                  onClick={this.props.entryDenied}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 4C9.243 4 7 6.243 7 9h2c0-1.654 1.346-3 3-3s3 1.346 3 3c0 1.069-.454 1.465-1.481 2.255-.382.294-.813.626-1.226 1.038C10.981 13.604 10.995 14.897 11 15v2h2v-2.009c0-.024.023-.601.707-1.284.32-.32.682-.598 1.031-.867C15.798 12.024 17 11.1 17 9 17 6.243 14.757 4 12 4zM11 18H13V20H11z" />
+                    </svg>
+                  </button>
+                  <div className="video-buttons__child-hint">Кто там?</div>
+                </div>
+                <div className="video-buttons__child">
+                  <button
+                    id="entryDenied"
+                    className="video-buttons__child-buttons"
+                    onClick={this.props.entryDenied}
                   >
-                    <path
-                      fill="none"
-                      d="M10,8c0-1.178-0.822-2-2-2S6,6.822,6,8s0.822,2,2,2S10,9.178,10,8z"
-                    />
-                    <path d="M15.706 15.706L17.999 13.413 20.293 15.707 21.707 14.293 19.414 12 21.707 9.707 20.293 8.293 18 10.586 15.707 8.293 14.293 9.707 16.585 11.999 14.292 14.292zM12 8c0-2.28-1.72-4-4-4S4 5.72 4 8s1.72 4 4 4S12 10.28 12 8zM6 8c0-1.178.822-2 2-2s2 .822 2 2-.822 2-2 2S6 9.178 6 8zM4 18c0-1.654 1.346-3 3-3h2c1.654 0 3 1.346 3 3v1h2v-1c0-2.757-2.243-5-5-5H7c-2.757 0-5 2.243-5 5v1h2V18z" />
-                  </svg>
-                </button>
-                <div className="video-buttons__child-hint">Отказать</div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="none"
+                        d="M10,8c0-1.178-0.822-2-2-2S6,6.822,6,8s0.822,2,2,2S10,9.178,10,8z"
+                      />
+                      <path d="M15.706 15.706L17.999 13.413 20.293 15.707 21.707 14.293 19.414 12 21.707 9.707 20.293 8.293 18 10.586 15.707 8.293 14.293 9.707 16.585 11.999 14.292 14.292zM12 8c0-2.28-1.72-4-4-4S4 5.72 4 8s1.72 4 4 4S12 10.28 12 8zM6 8c0-1.178.822-2 2-2s2 .822 2 2-.822 2-2 2S6 9.178 6 8zM4 18c0-1.654 1.346-3 3-3h2c1.654 0 3 1.346 3 3v1h2v-1c0-2.757-2.243-5-5-5H7c-2.757 0-5 2.243-5 5v1h2V18z" />
+                    </svg>
+                  </button>
+                  <div className="video-buttons__child-hint">Отказать</div>
+                </div>
               </div>
             </div>
           </div>
